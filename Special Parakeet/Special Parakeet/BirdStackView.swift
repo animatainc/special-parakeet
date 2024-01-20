@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct BirdStackView: View {
-    @ObservedObject var bird: Bird
+    var bird: Bird
+    @Binding var presentedBirds: [Bird]
     
     var body: some View {
         VStack(alignment: .center) {
@@ -24,7 +25,7 @@ struct BirdStackView: View {
             }.padding(EdgeInsets(top: 0, leading: 15, bottom: -30, trailing: 15))
                 .frame(width: 100, height: 100)
             Button(action: {
-                bird.isFlipped.toggle()
+                presentedBirds.append(bird)
             }, label: {
                 Text(bird.name)
             }).buttonStyle(.borderedProminent)
@@ -34,10 +35,11 @@ struct BirdStackView: View {
     }
     
     func tapInfoButton() {
-        // Place tap info button logic here. 
+        // Place tap info button logic here.
     }
 }
 
 #Preview {
-    BirdStackView(bird: Bird(name: "Sparrow", isFlipped: true))
+    BirdStackView(bird: Bird(name: "Sparrow", family: "Some"),
+                  presentedBirds: Binding(projectedValue: .constant([])))
 }
