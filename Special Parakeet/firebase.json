@@ -1,0 +1,6 @@
+{
+  "firestore": {
+    "rules": "special-parakeet-firestore.rules",
+    "app indexes": "special-parakeet-firestore.indexes.json"
+  }
+}
